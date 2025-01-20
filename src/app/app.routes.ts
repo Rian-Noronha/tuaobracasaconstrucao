@@ -1,15 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component'; // Importe o LoginComponent
+import { Routes } from '@angular/router';
+import { CadastrarCasaComponent } from './cadastrar-casa/cadastrar-casa.component';
+import { LoginComponent } from './login/login.component';
 
-// Definindo as rotas
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'login' }  // Redireciona qualquer rota desconhecida para 'login'
+  { path: 'cadastro-casa', component: CadastrarCasaComponent },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],  // Configura o roteamento no aplicativo
-  exports: [RouterModule]  // Exporta o RouterModule para ser utilizado em outros módulos
-})
-export class AppRoutingModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,16 @@ export class LoginComponent {
     password: '',
   };
 
+  constructor(private router: Router) {} 
+
   onSubmit() {
     console.log('Usuário:', this.user);
-    // Aqui você pode implementar a lógica de autenticação, como uma chamada à API.
   }
+
+
+  navigateToCadastroCasa() {
+    this.router.navigate(['/cadastro-casa']);
+  }
+
 }
 
