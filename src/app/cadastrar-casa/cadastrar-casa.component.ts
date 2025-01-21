@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CasaService } from '../services/casa.service';
 import { Casa } from './casa.model';
 
@@ -30,13 +31,14 @@ export class CadastrarCasaComponent {
     }
   };
 
-  constructor(private casaService: CasaService) {}
+  constructor(private casaService: CasaService, private router: Router) {}
   
   onSubmit(){
     console.log('Formulário enviado:', this.casa);
     this.casaService.cadastrarCasa(this.casa).subscribe({
       next: (response) => {
         console.log('Casa cadastrada com sucesso:', response);
+        this.router.navigate(['/login']);
       },
 
       error: (err) => {
