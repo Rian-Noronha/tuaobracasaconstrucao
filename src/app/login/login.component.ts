@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,30 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private router: Router) {} 
+  constructor(
+    private router: Router,
+    private authService: AuthService
+
+  ) {} 
 
   onSubmit() {
     console.log('Usuário:', this.user);
+
+    
+    this.authService.login(this.user.email, this.user.password).subscribe({
+      next: (response) => {
+        console.log('Token:', response.token);
+        
+        localStorage.setItem('authToken', response.token);
+
+        
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('Erro no login:', err);
+        alert('Erro ao fazer login');
+      },
+    });
   }
 
 
