@@ -1,1 +1,33 @@
-<p>dashboard works!</p>
+<h2>Clientes Vinculados</h2>
+
+<div *ngIf="clientes.length > 0; else semClientes">
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Contato</th>
+        <th>Endereço</th>
+        <th>Imagem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.contatoWhatsApp }}</td>
+        <td>{{ cliente.endereco.nomeLugar }}, Nº {{ cliente.endereco.numero }} - CEP: {{ cliente.endereco.cep }}</td>
+        <td>
+          <img *ngIf="cliente.urlImagemPerfil" [src]="cliente.urlImagemPerfil" alt="Foto do Cliente" width="50">
+          <span *ngIf="!cliente.urlImagemPerfil">Sem imagem</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #semClientes>
+  <p>Nenhum cliente vinculado encontrado.</p>
+</ng-template>
+

@@ -16,4 +16,5 @@ export class Casa {
     contatoWhatsApp: string = '';
     senha: string = '';
     endereco: Endereco = new Endereco;
-  }
+}
+

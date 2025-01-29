@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,34 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { email, senha: password });
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, senha: password }).pipe(
+      tap(response => {
+        this.salvarDados(response.token, email);
+      })
+    );
   }
 
+
+  private salvarDados(token: string, email: string){
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('userEmail', email);
+  }
+
+  pegarEmailUsuario(): string | null {
+    return localStorage.getItem('userEmail');
+  }
+
+  pegarToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('authToken');
+  }
+
+  logout() {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userEmail');
+  }
   
 }
