@@ -1,33 +1,50 @@
-<h2>Clientes Vinculados</h2>
+<div class="container-fluid text-center">
+  <div class="row d-flex flex-column flex-md-row w-100">
+    <div class="col-12 col-md-2 sidebar d-flex flex-column align-items-center p-3">
+      <div class="text-center mb-3">
+        <label for="uploadLogo" class="d-block">
+          <img *ngIf="logoUrl; else defaultLogo" [src]="logoUrl" alt="Logo da Casa" class="rounded-circle img-thumbnail" width="80">
+          <ng-template #defaultLogo>
+            <img src="../assets/sem-imagem.png" alt="Sem logo" class="rounded-circle img-thumbnail" width="80">
+          </ng-template>
+        </label>
+        <input type="file" id="uploadLogo" (change)="listarClientesVinculados()" hidden>
+      </div>
+      <ul class="nav flex-column w-100 p-3">
+        <li class="nav-item">
+          <a [routerLink]="['/dashboard']" class="nav-link active">👥 Clientes</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/meus-dados']" class="nav-link">🔧 Meus Dados</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="listarClientesVinculados()" class="nav-link text-danger">🚪 Sair</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-md-10 conteudo-principal p-4 flex-grow-1 min-vh-100">
+      <div *ngIf="clientes.length > 0; else semClientes" class="d-flex flex-wrap gap-3">
+        <div *ngFor="let cliente of clientes" class="card" style="width: 18rem;">
+          <img *ngIf="cliente.urlImagemPerfil; else semImagem" [src]="cliente.urlImagemPerfil" class="card-img-top" alt="Foto do Cliente">
+          <ng-template #semImagem>
+            <img src="../assets/sem-imagem.png" class="card-img-top" alt="Sem imagem">
+          </ng-template>
 
-<div *ngIf="clientes.length > 0; else semClientes">
-  <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Contato</th>
-        <th>Endereço</th>
-        <th>Imagem</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{ cliente.nome }}</td>
-        <td>{{ cliente.email }}</td>
-        <td>{{ cliente.contatoWhatsApp }}</td>
-        <td>{{ cliente.endereco.nomeLugar }}, Nº {{ cliente.endereco.numero }} - CEP: {{ cliente.endereco.cep }}</td>
-        <td>
-          <img *ngIf="cliente.urlImagemPerfil" [src]="cliente.urlImagemPerfil" alt="Foto do Cliente" width="50">
-          <span *ngIf="!cliente.urlImagemPerfil">Sem imagem</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <div class="card-body">
+            <h5 class="card-title">{{ cliente.nome }}</h5>
+            <p class="card-text">
+              <strong>Contato:</strong> {{ cliente.contatoWhatsApp }}
+            </p>
+            <button [routerLink]="['/demandas', cliente.email]" type="button" class="btn btn-success">
+              Ver orçamentos
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #semClientes>
+        <p>Nenhum cliente vinculado encontrado.</p>
+      </ng-template>
+    </div>
+  </div>
 </div>
-
-
-<ng-template #semClientes>
-  <p>Nenhum cliente vinculado encontrado.</p>
-</ng-template>
 

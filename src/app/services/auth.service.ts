@@ -24,8 +24,12 @@ export class AuthService {
     localStorage.setItem('userEmail', email);
   }
 
-  pegarEmailUsuario(): string | null {
-    return localStorage.getItem('userEmail');
+  pegarEmailUsuario() {
+    if (typeof window !== 'undefined' && localStorage) {
+      return localStorage.getItem('userEmail');
+    } else {
+      return null;
+    }
   }
 
   pegarToken(): string | null {

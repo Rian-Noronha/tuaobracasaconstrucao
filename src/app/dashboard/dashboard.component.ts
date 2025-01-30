@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CasaService } from '../services/casa.service';
 import { Cliente } from './cliente.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
 
   clientes: Cliente[] = [];
   emailCasa: string = '';
+  logoUrl: string = '';
 
 
   constructor(private casaService: CasaService, private authService: AuthService) {}
