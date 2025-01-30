@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CasaService } from '../services/casa.service';
 import { Cliente } from './cliente.model';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   logoUrl: string = '';
 
 
-  constructor(private casaService: CasaService, private authService: AuthService) {}
+  constructor(private casaService: CasaService, private authService: AuthService, private router: Router) {}
   ngOnInit(): void {
     
     const emailUsuario = this.authService.pegarEmailUsuario();
@@ -44,6 +44,12 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+
+  verOrcamentos(emailCliente: string){
+    this.router.navigate(['/demanda'], { state: { emailCliente } });
+  } 
+
 
   
 
