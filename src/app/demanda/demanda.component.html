@@ -1,14 +1,34 @@
-<div class="container">
-    <h3>Demandas do Cliente {{cliente.nome}}</h3>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/demanda">Demandas do Cliente {{cliente.nome}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Meus dados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Sair</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <div *ngIf="demandas.length > 0; else semdemandas">
       <div class="d-flex flex-wrap">
         <div *ngFor="let demanda of demandas" class="card">
           <div class="card-body">
             <h5 class="card-title">{{ demanda.trabalhoSerFeito }}</h5>
             <p class="card-text">{{ demanda.detalhes }}</p>
-            <a [href]="demanda.urlOrcamento" class="btn btn-primary" target="_blank">
-              Ver o orçamento
-            </a>
+            <button (click)="baixarOrcamento(demanda.urlOrcamento)" class="btn btn-primary">
+              ver Orçamento
+            </button>
           </div>
         </div>
       </div>

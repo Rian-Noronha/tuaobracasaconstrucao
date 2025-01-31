@@ -1,81 +1,8 @@
-.cadastrar-casa-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cadastrar-casa-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 1.8em;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .form-control:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.2em;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  button[type="submit"]:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  /* Estilo para campos de Endereço */
-  .form-group input[type="text"]:focus,
-  .form-group input[type="url"]:focus,
-  .form-group input[type="email"]:focus,
-  .form-group input[type="password"]:focus {
-    border-color: #007bff;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .cadastrar-casa-container {
-      width: 90%;
-      padding: 15px;
-    }
-  
-    .cadastrar-casa-container h2 {
-      font-size: 1.5em;
-    }
-  }
+.container{
+  background: #fcf9f7;
+}
+
+.btn{
+  background-color: #D14F2D;
+}
   

@@ -10,7 +10,30 @@
 }
 
 .sidebar{
-    background-color: #545F47;
+    background-color: #b5550b;
 }
+
+.card{
+    background-color: #FF6F00;
+}
+
+.btn{
+    background-color: #FFFFFF;
+    color: #D14F2D;
+}
+
+.nav-item {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 10px;
+  }
+
+  .foot-text{
+    text-align: center;
+  }
+
+  .upload{
+    border: none;
+  }
+  
 
 

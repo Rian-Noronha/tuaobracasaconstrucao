@@ -1,5 +1,4 @@
 import { Endereco } from "../cadastrar-casa/casa.model";
-import { Cliente } from "../dashboard/cliente.model";
 
 
 export class Demanda{

@@ -2,4 +2,10 @@
     width: 18rem; 
     margin-right: 15px; 
     margin-bottom: 15px;
+    background-color: #FF6F00;
+}
+
+.btn{
+    background-color: #FFFFFF;
+    color: #545F47;
 }

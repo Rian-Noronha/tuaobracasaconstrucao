@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cliente } from '../dashboard/cliente.model';
@@ -20,7 +21,7 @@ export class DemandaComponent {
   emailCasa: string = '';
   demandas: Demanda[] = [];
 
-  constructor(private router: Router,  private casaService: CasaService, private authService: AuthService) {
+  constructor(private router: Router,  private casaService: CasaService, private authService: AuthService, private http: HttpClient) {
     const navigation = this.router.getCurrentNavigation();
     this.cliente = navigation?.extras.state?.['cliente'] || null;
 
@@ -53,6 +54,10 @@ export class DemandaComponent {
         console.error('Erro ao listar demandas:', error);
       }
     });
+  }
+
+  baixarOrcamento(url: string) {
+    window.open(url, '_blank');
   }
 
 }

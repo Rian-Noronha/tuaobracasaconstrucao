@@ -1,26 +1,37 @@
 <div class="container-fluid text-center">
   <div class="row d-flex flex-column flex-md-row w-100">
     <div class="col-12 col-md-2 sidebar d-flex flex-column align-items-center p-3">
-      <div class="text-center mb-3">
-        <label for="uploadLogo" class="d-block">
-          <img *ngIf="logoUrl; else defaultLogo" [src]="logoUrl" alt="Logo da Casa" class="rounded-circle img-thumbnail" width="80">
-          <ng-template #defaultLogo>
-            <img src="../assets/sem-imagem.png" alt="Sem logo" class="rounded-circle img-thumbnail" width="80">
-          </ng-template>
-        </label>
-        <input type="file" id="uploadLogo" (change)="listarClientesVinculados()" hidden>
-      </div>
       <ul class="nav flex-column w-100 p-3">
-        <li class="nav-item">
-          <a [routerLink]="['/dashboard']" class="nav-link active">👥 Clientes</a>
+        <li class="nav-item mb-2 upload">
+          <div class="text-center mb-3">
+            <label for="uploadLogo" class="d-block">
+              <img *ngIf="logoUrl; else defaultLogo" [src]="logoUrl" alt="Logo da Casa" class="rounded-circle img-thumbnail" width="80">
+              <ng-template #defaultLogo>
+                <img src="../assets/sem-imagem.png" alt="Sem logo" class="rounded-circle img-thumbnail" width="80">
+              </ng-template>
+            </label>
+            <input type="file" id="uploadLogo" (change)="listarClientesVinculados()" hidden>
+          </div>
         </li>
-        <li class="nav-item">
-          <a [routerLink]="['/meus-dados']" class="nav-link">🔧 Meus Dados</a>
+        <li class="nav-item mb-2">
+          <a href="/dashboard" class="nav-link active d-flex align-items-center">
+            <img src="../assets/home.png" alt="Clientes" style="width: 20px; margin-right: 10px;" />
+            Clientes
+          </a>
         </li>
-        <li class="nav-item">
-          <a (click)="listarClientesVinculados()" class="nav-link text-danger">🚪 Sair</a>
+        <li class="nav-item mb-2">
+          <a href="/dashboard" class="nav-link active d-flex align-items-center">
+            <img src="../assets/data.png" alt="Dados" style="width: 20px; margin-right: 10px;" />
+            Dados
+          </a>
         </li>
-      </ul>
+        <li class="nav-item mb-2">
+          <a href="/login" class="nav-link active d-flex align-items-center">
+            <img src="../assets/logout.png" alt="Sair da dashboard" style="width: 20px; margin-right: 10px;" />
+            Sair
+          </a>
+        </li>
+      </ul> 
     </div>
     <div class="col-12 col-md-10 conteudo-principal p-4 flex-grow-1 min-vh-100">
       <div *ngIf="clientes.length > 0; else semClientes" class="d-flex flex-wrap gap-3">
@@ -47,4 +58,29 @@
     </div>
   </div>
 </div>
+
+<footer class="bg-dark text-white py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-inline d-flex justify-content-between">
+          <li class="list-inline-item">
+            <p>&copy; Rian Noronha, 2025.</p>
+          </li>
+          <li class="list-inline-item">
+            Todos os direitos reservados.
+          </li>
+          <li class="list-inline-item">
+            <a href="/termos" class="text-white">Termos de uso</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="/privacidade" class="text-white">Política de privacidade</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
 
