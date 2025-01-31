@@ -1,25 +1,58 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Cliente } from '../dashboard/cliente.model';
+import { AuthService } from '../services/auth.service';
+import { CasaService } from '../services/casa.service';
+import { Demanda } from './demanda.model';
 
 @Component({
   selector: 'app-demanda',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './demanda.component.html',
   styleUrls: ['./demanda.component.css']
 })
 export class DemandaComponent {
 
-  emailCliente: string | null = null;
+  emailCliente: string = '';
+  cliente: Cliente = new Cliente();
+  emailCasa: string = '';
+  demandas: Demanda[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router,  private casaService: CasaService, private authService: AuthService) {
     const navigation = this.router.getCurrentNavigation();
-    this.emailCliente = navigation?.extras.state?.['emailCliente'] || null;
+    this.cliente = navigation?.extras.state?.['cliente'] || null;
 
-    if (!this.emailCliente) {
-      console.error("Nenhum email de cliente foi passado.");
+    if (!this.cliente) {
+      console.error("Nenhum objeto cliente foi passado.");
       this.router.navigate(['/dashboard']);
+    }else{
+      this.emailCliente = this.cliente.email;
     }
+  }
+
+
+  ngOnInit(): void {
+    const emailUsuario = this.authService.pegarEmailUsuario();
+    if (this.emailCliente && emailUsuario) {
+      this.emailCasa = emailUsuario;
+      this.listarDemandasCliente(this.emailCliente, this.emailCasa);
+    }
+  }
+
+
+
+  listarDemandasCliente(emailCliente: string, emailCasa: string): void {
+    this.casaService.listarDemandasCliente(this.emailCliente, this.emailCasa).subscribe({
+      next: (demandas) => {
+        this.demandas = demandas;
+        console.log('Demandas:', demandas);
+      },
+      error: (error) => {
+        console.error('Erro ao listar demandas:', error);
+      }
+    });
   }
 
 }

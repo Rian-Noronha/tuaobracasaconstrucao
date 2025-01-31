@@ -1,1 +1,22 @@
-<p>O email do cliente para ver as demandas dele é {{emailCliente}}</p>
+<div class="container">
+    <h3>Demandas do Cliente {{cliente.nome}}</h3>
+    <div *ngIf="demandas.length > 0; else semdemandas">
+      <div class="d-flex flex-wrap">
+        <div *ngFor="let demanda of demandas" class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ demanda.trabalhoSerFeito }}</h5>
+            <p class="card-text">{{ demanda.detalhes }}</p>
+            <a [href]="demanda.urlOrcamento" class="btn btn-primary" target="_blank">
+              Ver o orçamento
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #semdemandas>
+      <p>Não há demandas disponíveis para este cliente.</p>
+    </ng-template>
+  </div>
+  
+  

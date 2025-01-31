@@ -46,8 +46,8 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  verOrcamentos(emailCliente: string){
-    this.router.navigate(['/demanda'], { state: { emailCliente } });
+  verOrcamentos(cliente: Cliente){
+    this.router.navigate(['/demanda'], { state: { cliente: cliente } });
   } 
 
 
